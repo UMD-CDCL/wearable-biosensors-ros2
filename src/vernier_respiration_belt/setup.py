@@ -4,11 +4,13 @@ from glob import glob
 
 
 package_name = 'vernier_respiration_belt'
+submodules = 'vernier_respiration_belt/gdx'
+
 
 setup(
     name=package_name,
     version='0.0.1',
-    packages=[package_name],
+    packages=[package_name,submodules],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),

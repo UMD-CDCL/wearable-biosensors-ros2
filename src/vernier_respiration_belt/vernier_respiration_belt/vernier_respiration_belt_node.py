@@ -9,7 +9,7 @@ import numpy as np
 from std_msgs.msg import Float32, Float32MultiArray, Bool
 
 # For Godirect libs.
-from gdx import gdx
+from .gdx import gdx
 # define information of Veriner sensors 
 
 class ros2_vernier_respiration_belt(Node):
@@ -36,7 +36,8 @@ class ros2_vernier_respiration_belt(Node):
 
 
         self.gdx = gdx.gdx()  
-        self.gdx.open_ble(self.Parm_Device_Name)
+        #self.gdx.open_ble(self.Parm_Device_Name)
+        self.gdx.open_usb()
         # 1: Force (N), 2: Respiration Rate (bpm), 4: Step, 5: Step Rate (spm)
         # Step = number of steps that are detected by the sensor
         # Step Rate = The Step Rate channel steps per minute (SPM). The sample window for the calculation is 10 seconds.
