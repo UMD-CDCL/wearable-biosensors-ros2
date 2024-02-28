@@ -7,7 +7,7 @@ from rclpy.node import Node
 import numpy as np
 
 from std_msgs.msg import Float32, Float32MultiArray, Bool, Header
-from cdcl_msgs.msg import Vitals
+from cdcl_umd_msgs.msg import Vitals
 
 # For Godirect libs.
 from .gdx import gdx
