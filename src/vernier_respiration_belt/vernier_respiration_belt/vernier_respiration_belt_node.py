@@ -75,11 +75,11 @@ class ros2_vernier_respiration_belt(Node):
 
             self.pub_respiration_belt_force_data.publish(Float32(data=self.arr_resp_belt_data[0]))
             if  np.isnan(self.arr_resp_belt_data[1]) == False:
-		vitals = Vitals()
-		header = Header()
-		vitals.header = header
-		vitals.data = self.arr_resp_belt_data[1]
-		self.pub_respiration_belt_bpm_data.publish(vitals)
+                vitals = Vitals()
+                header = Header()
+                vitals.header = header
+                vitals.data = self.arr_resp_belt_data[1]
+                self.pub_respiration_belt_bpm_data.publish(vitals)
                 #self.pub_respiration_belt_bpm_data.publish(Float32(data=self.arr_resp_belt_data[1]))
 
         if self.Parm_Chunk_Enable:
