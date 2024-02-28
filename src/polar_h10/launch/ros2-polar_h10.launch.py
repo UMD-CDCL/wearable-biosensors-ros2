@@ -23,7 +23,7 @@ def generate_launch_description():
             'Chunk_Length': 10,
             ### For sensor devices
             'Device_Mac_Address': 'EE:75:D1:12:36:4B',
-            }] 
+            }]
         )
   
     return LaunchDescription([

@@ -6,7 +6,7 @@ import rclpy
 from rclpy.node import Node
 import numpy as np
 
-from std_msgs.msg import Float32, Float32MultiArray, Bool, Header
+from std_msgs.msg import Float32, Float32MultiArray, Bool , Header
 from cdcl_umd_msgs.msg import Vitals
 
 # For Godirect libs.
@@ -77,8 +77,9 @@ class ros2_vernier_respiration_belt(Node):
             if  np.isnan(self.arr_resp_belt_data[1]) == False:
                 vitals = Vitals()
                 header = Header()
+                header.stamp = self.get_clock().now().to_msg()
                 vitals.header = header
-                vitals.data = self.arr_resp_belt_data[1]
+                vitals.data = round(self.arr_resp_belt_data[1])
                 self.pub_respiration_belt_bpm_data.publish(vitals)
                 #self.pub_respiration_belt_bpm_data.publish(Float32(data=self.arr_resp_belt_data[1]))
 

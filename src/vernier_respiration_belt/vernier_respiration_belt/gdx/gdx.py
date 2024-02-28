@@ -59,7 +59,7 @@ class gdx:
             while i < len(gdx.devices): 
                 open_device_success = gdx.devices[i].open()
                 print("open device ",i, " = ", open_device_success, sep="")
-                i +=1               
+                i +=1
 
 
 

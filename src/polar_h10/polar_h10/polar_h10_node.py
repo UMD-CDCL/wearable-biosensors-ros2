@@ -4,7 +4,8 @@ import rclpy
 from rclpy.node import Node
 from rclpy.parameter import Parameter
 
-from std_msgs.msg import Int32, Float32, Float32MultiArray, MultiArrayDimension, MultiArrayLayout
+from std_msgs.msg import Int32, Float32, Float32MultiArray, MultiArrayDimension, MultiArrayLayout, Header
+from cdcl_umd_msgs.msg import Vitals
 
 
 import time, sys, math
@@ -39,15 +40,18 @@ class ros2_polar_h10(Node):
             gatt = pexpect.spawn("gatttool -t random -b " + self.Parm_Device_Mac_Address+" --char-write-req --handle=0x0011 --value=0100 --listen" )
             check = gatt.readline()
             check = check.decode("utf-8")
+            rclpy.logging.get_logger('test').info("Check: \"{0}\"".format(check))
             if check == "Characteristic value was written successfully\r\n":
                 line = gatt.readline()
                 line = line.decode("utf-8")
                 wonsu=line.split()
 
                 if wonsu[5] == "10":
+                    rclpy.logging.get_logger('test').info("Polar connected.")
                     #print("[Polar] connecting")
                     polar_h10_state = True
             else:
+                rclpy.logging.get_logger('test').info("Polar failed.")
                 #print("[Polar] fail to hack ble")
                 pass
         #print("[Polar] connected")
@@ -57,7 +61,7 @@ class ros2_polar_h10(Node):
         # Publisher Parts
         #############################################################
         if self.Parm_Sensor_Enable:
-            self.pub_polar_h10_hr = self.create_publisher(Int32, 'biosensors/polar_h10/hr', 10) 
+            self.pub_polar_h10_hr = self.create_publisher(Vitals, 'biosensors/polar_h10/hr', 10) 
             self.pub_polar_h10_ibi = self.create_publisher(Int32, 'biosensors/polar_h10/ibi', 10) 
             self.pub_polar_h10_bat = self.create_publisher(Int32, 'biosensors/polar_h10/dev', 10)  # battery level
             
@@ -74,7 +78,13 @@ class ros2_polar_h10(Node):
                 ibi_data = int(polar_h10_recevied_data[7],16)
                 bat_level_data = int(polar_h10_recevied_data[8],16)
                 if self.Parm_Sensor_Enable:
-                    self.pub_polar_h10_hr.publish(Int32(data=hr_data))
+                    vitals = Vitals()
+                    header = Header()
+                    header.stamp = self.get_clock().now().to_msg()
+                    vitals.header = header
+                    vitals.data = hr_data
+                    # self.pub_polar_h10_hr.publish(Int32(data=hr_data))
+                    self.pub_polar_h10_hr.publish(vitals)
                     self.pub_polar_h10_ibi.publish(Int32(data=ibi_data))
                     self.pub_polar_h10_bat.publish(Int32(data=bat_level_data))
                 else:
