@@ -6,7 +6,8 @@ import rclpy
 from rclpy.node import Node
 import numpy as np
 
-from std_msgs.msg import Float32, Float32MultiArray, Bool
+from std_msgs.msg import Float32, Float32MultiArray, Bool, Header
+from cdcl_msgs.msg import Vitals
 
 # For Godirect libs.
 from .gdx import gdx
@@ -51,7 +52,7 @@ class ros2_vernier_respiration_belt(Node):
         #############################################################
         # Publisher Parts
         #############################################################
-        self.pub_respiration_belt_bpm_data = self.create_publisher(Float32, "biosensors/vernier_respiration_belt/bpm", 10) #raw Respiration Rate (bpm)
+        self.pub_respiration_belt_bpm_data = self.create_publisher(Vitals, "biosensors/vernier_respiration_belt/bpm", 10) #raw Respiration Rate (bpm)
         self.pub_respiration_belt_force_data = self.create_publisher(Float32, "biosensors/vernier_respiration_belt/force", 10) #raw Force (N)
         
         if self.Parm_Chunk_Enable:
@@ -74,7 +75,12 @@ class ros2_vernier_respiration_belt(Node):
 
             self.pub_respiration_belt_force_data.publish(Float32(data=self.arr_resp_belt_data[0]))
             if  np.isnan(self.arr_resp_belt_data[1]) == False:
-                self.pub_respiration_belt_bpm_data.publish(Float32(data=self.arr_resp_belt_data[1]))
+		vitals = Vitals()
+		header = Header()
+		vitals.header = header
+		vitals.data = self.arr_resp_belt_data[1]
+		self.pub_respiration_belt_bpm_data.publish(vitals)
+                #self.pub_respiration_belt_bpm_data.publish(Float32(data=self.arr_resp_belt_data[1]))
 
         if self.Parm_Chunk_Enable:
             self.force_chunk_data.append(self.arr_resp_belt_data[0])
