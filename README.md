@@ -1,12 +1,16 @@
 # ros2-foxy-wearable-biosensors
 
 This repo is a modification of the https://github.com/SMARTlab-Purdue/ros2-foxy-wearable-biosensors. 
+
 Following are the modifications.
+
 Dockerized the whole thing.
+
 Added the device name for the vernier respiration belt and the MAC ID of the polar h10.
+
 Added the custom cdcl_umd_msgs message type and use the Vitals.msg to publish hr and bpm, this message type incldes data along with its time stamp.
 
-#Instructions to run
+# Instructions to run
 
 For building the docker container
 navigate to the cdcl:humble-jammy-biosensors folder and run the build.sh script
@@ -24,7 +28,7 @@ To open a new terminal, run the exec.sh script
 ./exec.sh
 ```
 
-#Insider the docker container
+# Insider the docker container
 
 Once you are inside the docker container, navigate to the cdcl_ws
 ```bash
