@@ -3,12 +3,9 @@
 This repo is a modification of the https://github.com/SMARTlab-Purdue/ros2-foxy-wearable-biosensors. 
 
 Following are the modifications.
-
-Dockerized the whole thing.
-
-Added the device name for the vernier respiration belt and the MAC ID of the polar h10.
-
-Added the custom cdcl_umd_msgs message type and use the Vitals.msg to publish hr and bpm, this message type incldes data along with its time stamp.
+1.Dockerized the whole thing.
+2.Added the device name for the vernier respiration belt and the MAC ID of the polar h10.
+3.Added the custom cdcl_umd_msgs message type and used the Vitals.msg to publish hr and bpm, this message type includes data along with its time stamp.
 
 # Instructions to run
 
