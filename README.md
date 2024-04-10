@@ -1,4 +1,4 @@
-# ros2-foxy-wearable-biosensors
+# wearable-biosensors-ros2
 
 This repo is a modification of the https://github.com/SMARTlab-Purdue/ros2-foxy-wearable-biosensors. 
 
@@ -13,7 +13,7 @@ Following are the modifications.
 # Instructions to run
 
 For building the docker container
-navigate to the cdcl:humble-jammy-biosensors folder and run the build.sh script
+After cloning the repo,navigate to the cdcl:humble-jammy-biosensors folder and run the build.sh script
 ```bash
 ./build.sh
 ```
@@ -61,6 +61,8 @@ To view hr data,
 ros2 topic echo biosensors/polar_h10/hr
 ```
 
+# Original REAMDE
+# ros2-foxy-wearable-biosensors
 
 
 <p align="center">
