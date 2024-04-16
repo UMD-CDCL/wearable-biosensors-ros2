@@ -103,9 +103,14 @@ RUN mkdir -p /home/cdcl/cdcl_ws/src && \
     colcon build --symlink-install
 
 # add scripts
-RUN echo -e 'source /opt/ros/humble/setup.bash' >> /home/cdcl/.bashrc
+RUN echo "alias cb='colcon build --symlink-install'">> /home/cdcl/.bashrc && \
+    echo "alias sr2='source /opt/ros/humble/setup.bash'">> /home/cdcl/.bashrc && \
+    echo "alias sri='source install/setup.bash'">> /home/cdcl/.bashrc && \
+    echo -e 'source /opt/ros/humble/setup.bash' >> /home/cdcl/.bashrc
 
 # Make the "cdcl" user's working director "/home/cdcl"
-RUN chown -R cdcl /home/cdcl/
+#RUN chown -R cdcl /home/cdcl/
 RUN cd /home/cdcl/cdcl_ws
 USER cdcl
+
+WORKDIR //home/cdcl/cdcl_ws
