@@ -58,7 +58,7 @@ ros2 run polar_h10 polar_h10_node
 To view hr data,
 
 ```bash
-ros2 topic echo biosensors/polar_h10/hr
+ros2 topic echo /biosensors/polar_h10/hr
 ```
 
 # Original REAMDE
