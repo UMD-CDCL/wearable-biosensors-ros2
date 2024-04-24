@@ -12,6 +12,20 @@ Following are the modifications.
 
 # Instructions to run
 
+Setup the USB driver
+
+Create a file call vstlibusb.rules and put it in /etc/udev/rules.d. Add the following lines to that file
+```
+SUBSYSTEM=="usb", ATTRS{idVendor}=="08f7", MODE="0666"
+SUBSYSTEM=="usb_device", ATTRS{idVendor}=="08f7", MODE="0666"
+```
+ 
+Tutorial links on how to use the devices
+[Vernier Respiration Belt](https://www.vernier.com/video/measure-respiration-rate-using-go-directrespiration-belt/)
+
+[Polar h10](https://www.youtube.com/watch?v=vw0WV-PWtcw)
+
+
 For building the docker container
 After cloning the repo,navigate to the cdcl:humble-jammy-biosensors folder and run the build.sh script
 ```bash
@@ -43,6 +57,12 @@ ros2 run vernier_respiration_belt vernier_respiration_belt_node
 ```
 ** This might fail sometimes, try to run this again to make it work.
 
+
+You can also use the launch file to run the device
+```bash
+ros2 launch vernier_respiration_belt ros2-vernier_respiration_belt.launch.py
+```
+
 To view bpm data,
 
 ```bash
@@ -50,16 +70,30 @@ ros2 topic echo /biosensors/vernier_respiration_belt/bpm
 ```
 
 For polar h10,
+You will have to connect the polar h10 to your laptop manually via bluetooth
 
 ```bash
 ros2 run polar_h10 polar_h10_node
 ```
+In case of failures, turn the bluetooth OFF and ON or even try forgetting the device and pair it again and run the above node again.
 
+You can also use the launch file to run the device
+```bash
+ros2 launch polar_h10 ros2-polar_h10.launch.py
+```
+ 
 To view hr data,
 
 ```bash
 ros2 topic echo /biosensors/polar_h10/hr
 ```
+
+You can view the below screen recording for reference
+
+[Screen recording for running docker and sensors](https://drive.google.com/file/d/14l6fuuWFUu5sC5KvVBY2Smud53hI5ljI/view?usp=sharing)
+
+For more details refer the below document
+[Biosensors Usage](https://docs.google.com/document/d/1ji_ld5PAxg2iyJmVmD80gJB9F_bvRxsRa4P2T5g4Mi4/edit?usp=sharing)
 
 # Original REAMDE
 # ros2-foxy-wearable-biosensors
