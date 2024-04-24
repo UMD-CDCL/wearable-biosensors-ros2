@@ -27,7 +27,8 @@ Tutorial links on how to use the devices
 [Polar h10](https://www.youtube.com/watch?v=vw0WV-PWtcw)
 
 
-For building the docker container
+For building the docker container:
+
 After cloning the repo,navigate to the cdcl:humble-jammy-biosensors folder and run the build.sh script
 ```bash
 ./build.sh
