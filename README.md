@@ -21,6 +21,7 @@ SUBSYSTEM=="usb_device", ATTRS{idVendor}=="08f7", MODE="0666"
 ```
  
 Tutorial links on how to use the devices
+
 [Vernier Respiration Belt](https://www.vernier.com/video/measure-respiration-rate-using-go-directrespiration-belt/)
 
 [Polar h10](https://www.youtube.com/watch?v=vw0WV-PWtcw)
@@ -93,6 +94,7 @@ You can view the below screen recording for reference
 [Screen recording for running docker and sensors](https://drive.google.com/file/d/14l6fuuWFUu5sC5KvVBY2Smud53hI5ljI/view?usp=sharing)
 
 For more details refer the below document
+
 [Biosensors Usage](https://docs.google.com/document/d/1ji_ld5PAxg2iyJmVmD80gJB9F_bvRxsRa4P2T5g4Mi4/edit?usp=sharing)
 
 # Original REAMDE
